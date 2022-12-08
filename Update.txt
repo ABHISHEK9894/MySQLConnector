@@ -1,0 +1,29 @@
+import mysql.connector as c
+
+con = c.connect(host='localhost',
+                user='root',
+                passwd='Ironmanrox@123',
+                database='abhi')
+
+if con.is_connected():
+    print("Successfully Connected...")
+else:
+    print("Connectivity issue...")
+
+cursor = con.cursor()
+
+while True:
+    code = int(input("Enter Employee code: "))
+    salary = int(input("Enter the salary: "))
+    
+    query = "update emp set salary = {} where code = {}".format(salary, code)
+    cursor.execute(query)
+    con.commit()
+
+    if cursor.rowcount > 0:
+        print("The data has been updated")
+    else:
+        print("No Data has been updated")
+    x = int(input("1 -> Update more entries:  \n2 -> EXIT "))
+    if x == 2:
+        break

@@ -1,0 +1,23 @@
+#To extract data from the table, there are three functions provided by python
+#    1. fetchone() = fetches one record at a time
+#    2. fetchmany() = fetches given number of records
+#    3. fetchall() = fetches all the data from the table
+
+import mysql.connector as c
+
+con = c.connect(host='localhost',
+                user='root',
+                passwd='Ironmanrox@123',
+                database='abhi')
+
+if con.is_connected():
+    print("Successfully Connected...")
+else:
+    print("Connectivity issue...")
+
+cursor = con.cursor()
+cursor.execute("select * from emp")
+data = cursor.fetchall()
+for i in data:
+    print(i)
+
